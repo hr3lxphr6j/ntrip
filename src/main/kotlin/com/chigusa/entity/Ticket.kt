@@ -8,7 +8,7 @@ import com.google.gson.Gson
  */
 data class Ticket(
         var ticketId: Long = -1,
-        var route: Route? = null,
+        var routeId: Long = -1,
         var price: Double = 0.0,
         var seat: Int = 0,
         var status: Int = 0

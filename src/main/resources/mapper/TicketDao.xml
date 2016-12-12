@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chigusa.dao.TicketDao">
+
+    <insert id="addTicket" parameterType="Ticket" useGeneratedKeys="true" keyProperty="ticket_id">
+        INSERT IGNORE ntrip.ticket (route_id, price, seat)
+        VALUES (#{routeId}, #{price}, #{seat})
+    </insert>
+
+    <select id="queryById" parameterType="long" resultType="Ticket">
+        SELECT *
+        FROM ntrip.ticket
+        WHERE ticket_id = #{ticketId}
+    </select>
+
+    <select id="queryByRoute" parameterType="Route" resultType="Ticket">
+        SELECT *
+        FROM ntrip.ticket
+        WHERE route_id = #{routeId}
+    </select>
+
+    <update id="updateTicket" parameterType="Ticket">
+        UPDATE ntrip.ticket
+        SET route_id = #{routeId},
+            price    = #{price},
+            seat     = #{seat},
+            status   = #{status}
+        WHERE ticket_id = #{ticketId}
+    </update>
+</mapper>

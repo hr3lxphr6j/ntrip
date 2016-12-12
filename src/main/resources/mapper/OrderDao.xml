@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chigusa.dao.OrderDao">
+    <insert id="addOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="order_id">
+        INSERT IGNORE ntrip.order (ticket_id, user_id)
+        VALUES (#{ticketId}, #{userId})
+    </insert>
+    <select id="queryById" parameterType="long" resultType="Order">
+        SELECT *
+        FROM ntrip.order
+        WHERE order_id = #{orderId}
+    </select>
+    <select id="queryByUser" parameterType="User" resultType="Order">
+        SELECT *
+        FROM ntrip.order
+        WHERE user_id = #{userId}
+    </select>
+    <delete id="delOrder" parameterType="Order">
+        DELETE FROM ntrip.`order`
+        WHERE order_id = #{orderId}
+    </delete>
+</mapper>

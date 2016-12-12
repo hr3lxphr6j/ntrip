@@ -9,8 +9,8 @@ import java.sql.Time
  */
 data class Order(
         var orderId: Long = -1,
-        var ticket: Ticket? = null,
-        var user: User? = null,
+        var ticketId: Long = -1,
+        var userId: Long = -1,
         var time: Time? = null
 ) {
     override fun toString(): String {

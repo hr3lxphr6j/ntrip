@@ -28,8 +28,8 @@ class RouteDaoTest {
     fun addRouteTest() {
         val route = Route()
         route.name = "东方航空MU5613"
-        route.startCity = cityDao?.queryById(1023)
-        route.endCity = cityDao?.queryById(1036)
+        route.startCityId = 1023
+        route.endCityId = 1036
         route.startTime = Time(SimpleDateFormat("hh:mm:ss").parse("12:35:00").time)
         route.endTime = Time(SimpleDateFormat("hh:mm:ss").parse("13:50:00").time)
         println("插入结果" + routeDao?.addRoute(route))
