@@ -13,7 +13,8 @@ data class Route(
         var startCity: City? = null,
         var endCity: City? = null,
         var startTime: Time? = null,
-        var endTime: Time? = null
+        var endTime: Time? = null,
+        var status: Int = 0
 ) {
     override fun toString(): String {
         return Gson().toJson(this)

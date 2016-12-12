@@ -80,6 +80,7 @@ CREATE TABLE ntrip.route (
   COMMENT '出发时间',
   end_time      TIME                   NOT NULL
   COMMENT '到站时间',
+  status        INT                    NOT NULL DEFAULT 0,
   KEY idx_route_name(name),
   CONSTRAINT FOREIGN KEY (start_city_id) REFERENCES city (city_id),
   CONSTRAINT FOREIGN KEY (end_city_id) REFERENCES city (city_id)

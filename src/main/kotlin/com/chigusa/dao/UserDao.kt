@@ -3,7 +3,7 @@ package com.chigusa.dao
 import com.chigusa.entity.User
 
 /**
- * 用户Dao接口
+ * 用户Dao
  * Created by chigusa on 16-12-11.
  */
 interface UserDao {

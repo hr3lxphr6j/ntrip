@@ -5,28 +5,36 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!--C3P0数据源配置-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!--基础信息配置-->
         <property name="driverClass" value="${driver}"/>
         <property name="jdbcUrl" value="${url}"/>
         <property name="user" value="${username}"/>
         <property name="password" value="${password}"/>
-
+        <!--连接池配置-->
         <property name="maxPoolSize" value="30"/>
         <property name="minPoolSize" value="10"/>
         <property name="autoCommitOnClose" value="false"/>
         <property name="checkoutTimeout" value="1000"/>
         <property name="acquireRetryAttempts" value="2"/>
     </bean>
-
+    <!--MyBatisSql会话工厂配置-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据源-->
         <property name="dataSource" ref="dataSource"/>
+        <!--MyBatis全局配置文件-->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--实体类包扫描位置-->
         <property name="typeAliasesPackage" value="com.chigusa.entity"/>
+        <!--Mapper映射XML所在-->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
-
+    <!--Spring Dao自动扫描配置-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--注入MyBatisSql会话工厂-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!--Spring自动扫描Dao位置-->
         <property name="basePackage" value="com.chigusa.dao"/>
     </bean>
 </beans>

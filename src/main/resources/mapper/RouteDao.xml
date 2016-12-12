@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chigusa.dao.RouteDao">
+
+    <resultMap id="RouteResultMap" type="Route">
+        <id property="routeId" column="route_id"/>
+        <result property="name" column="name"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="status" column="status"/>
+        <association property="startCity" javaType="City">
+            <id property="cityId" column="start_Cid"/>
+            <result property="name" column="scity_name"/>
+        </association>
+        <association property="endCity" javaType="City">
+            <id property="cityId" column="end_Cid"/>
+            <result property="name" column="ecity_name"/>
+        </association>
+    </resultMap>
+
+    <insert id="addRoute" parameterType="Route" useGeneratedKeys="true" keyProperty="route_id">
+        INSERT IGNORE ntrip.route (name, start_city_id, end_city_id, start_time, end_time)
+        VALUES (#{name}, #{startCity.cityId}, #{endCity.cityId}, #{startTime}, #{endTime})
+    </insert>
+
+    <select id="queryById" parameterType="long" resultMap="RouteResultMap">
+        SELECT
+            r.route_id,
+            r.name,
+            sc.city_id AS start_Cid,
+            sc.name    AS scity_name,
+            ec.city_id AS end_Cid,
+            ec.name    AS ecity_name,
+            r.start_time,
+            r.end_time,
+            r.status
+        FROM ntrip.route r LEFT JOIN ntrip.city sc ON r.start_city_id = sc.city_id
+            LEFT JOIN ntrip.city ec ON r.end_city_id = ec.city_id
+        WHERE route_id = #{routeId}
+    </select>
+
+    <select id="queryByName" resultMap="RouteResultMap">
+        SELECT
+            r.route_id,
+            r.name,
+            sc.city_id AS start_Cid,
+            sc.name    AS scity_name,
+            ec.city_id AS end_Cid,
+            ec.name    AS ecity_name,
+            r.start_time,
+            r.end_time,
+            r.status
+        FROM ntrip.route r LEFT JOIN ntrip.city sc ON r.start_city_id = sc.city_id
+            LEFT JOIN ntrip.city ec ON r.end_city_id = ec.city_id
+        WHERE r.name LIKE concat('%', #{name}, '%')
+    </select>
+
+    <select id="queryByCity" resultMap="RouteResultMap">
+        SELECT
+            r.route_id,
+            r.name,
+            sc.city_id AS start_Cid,
+            sc.name    AS scity_name,
+            ec.city_id AS end_Cid,
+            ec.name    AS ecity_name,
+            r.start_time,
+            r.end_time,
+            r.status
+        FROM ntrip.route r LEFT JOIN ntrip.city sc ON r.start_city_id = sc.city_id
+            LEFT JOIN ntrip.city ec ON r.end_city_id = ec.city_id
+        WHERE r.start_city_id = #{startCity.cityId}
+              AND r.end_city_id = #{endCity.cityId}
+    </select>
+
+    <update id="updateRoute" parameterType="Route">
+        UPDATE ntrip.route
+        SET name = #{name},
+            start_city_id = #{startCity.cityId},
+            end_city_id = #{endCity.cityId},
+            start_time = #{startTime},
+            end_time = #{endTime},
+            status = #{status}
+        WHERE route_id = #{routeId}
+    </update>
+
+</mapper>

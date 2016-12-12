@@ -22,7 +22,7 @@ class UserDaoTest {
 
     @Test
     fun addUserTest() {
-        print(userDao?.addUser(User(name = "SpringBootTest", password = "123456")))
+        println("插入情况："+userDao?.addUser(User(name = "BootTest", password = "12456")))
     }
 
     @Test
