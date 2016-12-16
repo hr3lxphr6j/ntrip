@@ -3,6 +3,8 @@ package com.chigusa.dao
 import com.chigusa.entity.User
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
@@ -17,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner
 @SpringBootTest
 
 class UserDaoTest {
+    private val logger: Logger = LoggerFactory.getLogger(this.javaClass)
     @Autowired
     private val userDao: UserDao? = null
 
@@ -33,9 +36,8 @@ class UserDaoTest {
 
     @Test
     fun queryByIdTest() {
-        for (i in 1000L..1010L) {
-            println(userDao?.queryById(i))
-        }
+            logger.info(userDao?.queryById(1).toString())
+
     }
 
     @Test

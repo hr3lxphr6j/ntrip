@@ -18,7 +18,4 @@ data class User(
         var birthday: Date? = null,
         var registerTime: Timestamp? = null
 ) {
-    override fun toString(): String {
-        return Gson().toJson(this)
-    }
 }

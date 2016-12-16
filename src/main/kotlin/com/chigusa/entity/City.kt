@@ -10,7 +10,4 @@ data class City(
         var cityId: Long = -1,
         var name: String = ""
 ) {
-    override fun toString(): String {
-        return Gson().toJson(this)
-    }
 }

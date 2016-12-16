@@ -13,7 +13,4 @@ data class Ticket(
         var seat: Int = 0,
         var status: Int = 0
 ) {
-    override fun toString(): String {
-        return Gson().toJson(this)
-    }
 }

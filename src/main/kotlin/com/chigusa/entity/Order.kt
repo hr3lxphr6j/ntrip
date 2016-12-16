@@ -13,7 +13,4 @@ data class Order(
         var userId: Long = -1,
         var time: Time? = null
 ) {
-    override fun toString(): String {
-        return Gson().toJson(this)
-    }
 }
