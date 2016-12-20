@@ -17,10 +17,11 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 open class TicketServiceImpl : TicketService {
+
     @Autowired
     val ticketDao: TicketDao? = null
     @Autowired
-    val orderDao:OrderDao? = null
+    val orderDao: OrderDao? = null
     @Autowired
     val dto2Entity: Dto2Entity? = null
     @Autowired
@@ -29,17 +30,19 @@ open class TicketServiceImpl : TicketService {
     override fun queryTickets(nRoute: NRoute): List<NTicket> {
         return ticketDao!!.queryByRoute(
                 dto2Entity!!.NRoute2Route(nRoute)).map { entity2Dto!!.Ticket2NTicket(it) }
+
     }
+
     @Transactional
     override fun buyTicket(nTicket: NTicket, nUser: NUser) {
-        if(ticketDao!!.queryById(nTicket.ticketId).status==1){
+        if (ticketDao!!.queryById(nTicket.ticketId).status == 1) {
             throw TicketBoughtException("票已售出")
         }
         try {
             val updateTicket = ticketDao.queryById(nTicket.ticketId)
             updateTicket.status = 1
             ticketDao.updateTicket(updateTicket)
-            orderDao!!.addOrder(Order(ticketId = nTicket.ticketId,userId = nUser.userId))
+            orderDao!!.addOrder(Order(ticketId = nTicket.ticketId, userId = nUser.userId))
         } catch(e: RuntimeException) {
             throw e
         }

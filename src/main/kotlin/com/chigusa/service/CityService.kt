@@ -1,4 +1,4 @@
-package com.chigusa.service.impl
+package com.chigusa.service
 
 import com.chigusa.dto.NCity
 
@@ -15,5 +15,5 @@ interface CityService {
     /**
      * 根据ID查询城市信息
      */
-    fun queryCity(cityId:Long):NCity
+    fun queryCity(cityId:Long): NCity
 }

@@ -1,12 +1,12 @@
 package com.chigusa.web
 
 import com.chigusa.dto.NUser
+import com.chigusa.service.OrderService
 import com.chigusa.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
-import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 
 /**
@@ -19,28 +19,36 @@ import javax.servlet.http.HttpSession
 class UserController {
     @Autowired
     val userService: UserService? = null
+    @Autowired
+    val orderService: OrderService? = null
+
+    @RequestMapping("/home")
+    fun home(model: Model,session:HttpSession): String {
+        model.addAttribute("orders",orderService!!.queryOrders(session.getAttribute("user") as NUser))
+        return "user"
+    }
 
     @PostMapping("/login")
     fun login(@RequestParam username: String,
               @RequestParam password: String,
-              model:Model
-              ): String {
-        val user =  userService!!.login(username, password)
-        model.addAttribute("user",user)
+              model: Model
+    ): String {
+        val user = userService!!.login(username, password)
+        model.addAttribute("user", user)
         return "redirect:/"
     }
 
     @GetMapping("/logout")
-    fun logout(model:Model):String{
-        model.addAttribute("user",NUser())
+    fun logout(model: Model): String {
+        model.addAttribute("user", NUser())
         return "redirect:/"
     }
 
-    @ResponseBody
     @PostMapping("/register")
     fun register(@RequestParam username: String,
-                 @RequestParam password: String): Boolean {
-        return userService!!.register(username, password)
+                 @RequestParam password: String): String {
+        userService!!.register(username, password)
+        return "redirect:/"
     }
 
     @ResponseBody

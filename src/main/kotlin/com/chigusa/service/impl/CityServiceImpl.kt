@@ -2,6 +2,7 @@ package com.chigusa.service.impl
 
 import com.chigusa.dao.CityDao
 import com.chigusa.dto.NCity
+import com.chigusa.service.CityService
 import com.chigusa.service.Entity2Dto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

@@ -24,7 +24,7 @@
         $('#register_from').submit();
     }
 </script>
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">nTrip</a>
+            <a class="navbar-brand" href="<c:url value="/"/>">nTrip</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,7 +46,7 @@
                     <li><a href="#" onclick="alert('大兄弟，先登录啊！')">买票</a></li>
                 </c:if>
                 <c:if test="${sessionScope.user!=null&&sessionScope.user.userId!=-1}">
-                    <li><a href="#" onclick="alert('大兄弟，你登录了啊！')">买票</a></li>
+                    <li><a href="<c:url value="/ticket/main"/>">买票</a></li>
                 </c:if>
 
             </ul>
@@ -68,7 +68,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户：${sessionScope.user.name}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#" data-toggle="modal" data-target="#LoginModal">订单详情</a></li>
+                            <li><a href="<c:url value="/user/home"/>">用户主页</a></li>
                             <li role="presentation" class="divider"></li>
                             <li><a href="<c:url value="/user/logout"/>">注销</a></li>
                         </ul>
@@ -80,10 +80,10 @@
 </nav>
 <div class="container">
     <c:if test="${sessionScope.user==null}">
-        <div class="alert alert-info" role="alert">嘿嘿嘿，醒一醒，你还没登录呢</div>
+        <div class="alert alert-info top" role="alert">嘿嘿嘿，醒一醒，你还没登录呢</div>
     </c:if>
     <c:if test="${sessionScope.user.userId==-1}">
-        <div class="alert alert-warning" role="alert">嘿嘿嘿，大兄弟请重新登录</div>
+        <div class="alert alert-warning top" role="alert">嘿嘿嘿，大兄弟请重新登录</div>
     </c:if>
 </div>
 <!-- Login Modal -->
@@ -118,7 +118,7 @@
         </div>
     </div>
 </div>
-<!-- Login Modal -->
+<!-- Register Modal -->
 <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">

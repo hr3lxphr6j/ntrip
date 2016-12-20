@@ -23,4 +23,5 @@ interface TicketService {
      * 根据ID查询
      */
     fun queryTicket(ticketId:Long):NTicket
+
 }

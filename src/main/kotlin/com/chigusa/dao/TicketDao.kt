@@ -2,6 +2,7 @@ package com.chigusa.dao
 
 import com.chigusa.entity.Route
 import com.chigusa.entity.Ticket
+import com.chigusa.entity.User
 
 /**
  * 票Dao
@@ -27,4 +28,5 @@ interface TicketDao {
      * 更新票信息
      */
     fun updateTicket(ticket: Ticket):Int
+
 }
