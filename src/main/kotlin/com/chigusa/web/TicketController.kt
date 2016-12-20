@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseBody
 
 /**
- *
- * Created by chigusa on 16-12-16.
+ * 票相关
  */
 @Controller
 @RequestMapping(value = "/ticket")

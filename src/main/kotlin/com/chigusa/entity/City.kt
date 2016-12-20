@@ -1,6 +1,5 @@
 package com.chigusa.entity
 
-import com.google.gson.Gson
 
 /**
  * 城市实体类

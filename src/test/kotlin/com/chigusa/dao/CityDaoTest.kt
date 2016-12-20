@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner
 
 /**
  * CityDao单元测试
- * Created by chigusa on 16-12-12.
  */
 @RunWith(SpringRunner::class)
 @ContextConfiguration("classpath:spring/spring-dao.xml")

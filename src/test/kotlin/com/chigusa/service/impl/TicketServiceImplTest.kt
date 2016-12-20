@@ -15,7 +15,7 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringRunner
 
 /**
- * Created by chigusa on 16-12-20.
+ * TicketService集成测试
  */
 @RunWith(SpringRunner::class)
 @ContextConfiguration("classpath:spring/spring-dao.xml",

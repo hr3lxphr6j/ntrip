@@ -1,6 +1,5 @@
 package com.chigusa.entity
 
-import com.google.gson.Gson
 
 /**
  * 票实体类

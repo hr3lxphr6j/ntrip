@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpSession
 
 /**
- *
- * Created by chigusa on 16-12-15.
+ * 用户控制
  */
 @Controller
 @RequestMapping("/user")

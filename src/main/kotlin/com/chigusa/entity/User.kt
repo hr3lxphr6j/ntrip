@@ -1,6 +1,5 @@
 package com.chigusa.entity
 
-import com.google.gson.Gson
 import java.sql.Date
 import java.sql.Timestamp
 

@@ -5,12 +5,12 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
 
 /**
- * Created by chigusa on 16-12-16.
+ * 主页
  */
 @Controller
 class MainController {
     @RequestMapping(value = "/")
-    fun mainPage(m:Model):String{
+    fun mainPage():String{
         return "index"
     }
 }
